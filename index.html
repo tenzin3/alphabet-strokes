@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tibetan Alphabet Stroke Guide</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <div>
+      <p class="eyebrow">Step-by-step handwriting</p>
+      <h1>First Four Tibetan Alphabets</h1>
+      <p class="sub">Follow the dotted path, stroke numbers, and animated red brush to learn ཀ ཁ ག ང.</p>
+    </div>
+    <button id="themeToggle" aria-label="Toggle theme">☾</button>
+  </header>
+
+  <main>
+    <section class="letter-picker" id="letterPicker"></section>
+
+    <section class="workspace">
+      <article class="card guide-card">
+        <div class="guide-head">
+          <div>
+            <p class="eyebrow">Current letter</p>
+            <h2 id="letterTitle"></h2>
+          </div>
+          <div class="controls">
+            <button id="prevStep">Back</button>
+            <button id="playStep" class="primary">Play stroke</button>
+            <button id="nextStep">Next</button>
+          </div>
+        </div>
+        <div class="svg-wrap">
+          <svg id="strokeSvg" viewBox="0 0 500 500" role="img" aria-label="Tibetan stroke guide"></svg>
+        </div>
+        <div class="progress"><span id="progressBar"></span></div>
+        <p id="instruction" class="instruction"></p>
+      </article>
+
+      <article class="card practice-card">
+        <div class="guide-head">
+          <div>
+            <p class="eyebrow">Practice</p>
+            <h2>Trace it yourself</h2>
+          </div>
+          <button id="clearCanvas">Clear</button>
+        </div>
+        <div class="canvas-wrap">
+          <canvas id="practiceCanvas" width="500" height="500"></canvas>
+        </div>
+        <p class="hint">Use mouse, trackpad, or finger. The faint guide remains underneath.</p>
+      </article>
+    </section>
+
+    <section class="card references">
+      <div>
+        <p class="eyebrow">Reference material</p>
+        <h2>Images and video used for the stroke order</h2>
+      </div>
+      <div class="media-grid">
+        <video controls src="assets/alphabet-stroke-video.mp4"></video>
+        <img src="assets/0436c872-7f7a-494b-9f12-dc65e9375dd4.png" alt="Reference image for Tibetan letter strokes" />
+        <img src="assets/db8e854f-1de6-43c0-8a6f-c5415b670c9f.png" alt="Reference image for Tibetan letter strokes" />
+        <img src="assets/5e6d895b-b4bd-4ff0-a49b-7482c83c00cc.png" alt="Reference image for Tibetan letter strokes" />
+        <img src="assets/7a62cb59-70b4-4c11-8b7d-4fca9d9372b2.png" alt="Reference image for Tibetan letter strokes" />
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
