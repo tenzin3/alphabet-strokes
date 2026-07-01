@@ -39,7 +39,7 @@ function render(){renderPicker(); const l=letters[currentLetter]; title.textCont
   [90,310,430].forEach(y=>svg.appendChild(make('line',{x1:55,y1:y,x2:445,y2:y,class:'guide-line'})));
   svg.appendChild(make('text',{x:32,y:102,class:'num'})).textContent=l.glyph;
   l.steps.forEach((s,i)=>{svg.appendChild(make('path',{d:s[1],class:'stroke-base',opacity:i<=currentStep?1:.18})); svg.appendChild(make('path',{d:s[1],class:'stroke-dot',opacity:i<=currentStep?1:.25}));});
-  l.steps.forEach((s,i)=>{const p=make('path',{d:s[1],class:'stroke-active',opacity:i===currentStep?1:0}); svg.appendChild(p); if(i===currentStep){animatePath(p)}});
+  l.steps.forEach((s,i)=>{const p=make('path',{d:s[1],class:'stroke-active',opacity:i<=currentStep?1:0}); svg.appendChild(p); if(i===currentStep){animatePath(p)}});
   l.steps.forEach((s,i)=>{const p=make('path',{d:s[1]}); svg.appendChild(p); const len=p.getTotalLength(); const pt=p.getPointAtLength(Math.min(18,len*.2)); p.remove(); const c=make('circle',{cx:pt.x,cy:pt.y,r:14,fill:i===currentStep?'#e65b3a':'#fff',stroke:'#1689bd','stroke-width':4}); svg.appendChild(c); const t=make('text',{x:pt.x-7,y:pt.y+9,class:'num'}); t.textContent=i+1; svg.appendChild(t);});
   drawPracticeGuide();
 }
