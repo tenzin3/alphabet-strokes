@@ -1,26 +1,26 @@
 const letters = [
   {glyph:'ཀ', name:'ka', steps:[
-    ['Top headline: move left to right across the upper guide line.', 'M105 95 L385 95'],
-    ['Left leg: curve down from the top-left, ending near the middle guide.', 'M118 98 C92 145 72 214 92 272'],
-    ['Middle leg: drop from the headline to the middle guide.', 'M242 98 C226 155 222 218 232 302'],
-    ['Right leg: draw the long vertical stroke down to the bottom guide.', 'M346 98 C350 205 351 320 349 430']
+    ['', 'M105 95 L385 95'],
+    ['', 'M118 98 C92 145 72 214 92 272'],
+    ['', 'M242 98 C226 155 222 218 232 302'],
+    ['', 'M346 98 C350 205 351 320 349 430']
   ]},
   {glyph:'ཁ', name:'kha', steps:[
-    ['Top headline: draw left to right.', 'M103 92 L386 92'],
-    ['Left stem: draw straight down from the left side.', 'M100 95 L100 428'],
-    ['Inner curve: start near the top, curve down into the center.', 'M260 95 C222 145 188 205 176 265'],
-    ['Right bowl and drop: sweep right, then finish downward.', 'M176 265 C265 252 326 278 382 338 M382 95 C384 174 383 260 382 338']
+    ['', 'M103 92 L386 92'],
+    ['', 'M100 95 L100 428'],
+    ['', 'M260 95 C222 145 188 205 176 265'],
+    ['', 'M176 265 C265 252 326 278 382 338 M382 95 C384 174 383 260 382 338']
   ]},
   {glyph:'ག', name:'ga', steps:[
-    ['Top headline: move left to right on the top line.', 'M105 92 L390 92'],
-    ['Left hook: curve down and inward, then sweep right.', 'M112 94 C82 148 68 220 95 278 C157 248 205 246 252 297'],
-    ['Middle drop: pull down from the top and finish on the middle guide.', 'M245 96 C236 172 235 243 252 297'],
-    ['Right long stem: draw down to the bottom guide.', 'M350 96 C352 205 354 322 352 430']
+    ['', 'M105 92 L390 92'],
+    ['', 'M112 94 C82 148 68 220 95 278 C157 248 205 246 252 297'],
+    ['', 'M245 96 C236 172 235 243 252 297'],
+    ['', 'M350 96 C352 205 354 322 352 430']
   ]},
   {glyph:'ང', name:'nga', steps:[
-    ['Top headline: begin with the horizontal stroke.', 'M115 95 L385 95'],
-    ['Left curve: come down from the upper-left and turn inward.', 'M118 96 C80 150 66 225 98 296'],
-    ['Lower sweeping tail: travel from left to right, ending with a small downward finish.', 'M98 296 C190 260 295 305 385 372']
+    ['', 'M115 95 L385 95'],
+    ['', 'M118 96 C80 150 66 225 98 296'],
+    ['', 'M98 296 C190 260 295 305 385 372']
   ]}
 ];
 let currentLetter = 0, currentStep = 0;
