@@ -24,6 +24,9 @@ const letters = [
   ]}
 ];
 let currentLetter = 0, currentStep = 0;
+let isPlaying = true;
+let speed = 1; // 1x, 1.5x, 2x
+let autoPlayInterval = null;
 const svg = document.getElementById('strokeSvg');
 const title = document.getElementById('letterTitle');
 const instruction = document.getElementById('instruction');
@@ -31,7 +34,7 @@ const bar = document.getElementById('progressBar');
 const picker = document.getElementById('letterPicker');
 
 function make(tag, attrs={}){const el=document.createElementNS('http://www.w3.org/2000/svg',tag);Object.entries(attrs).forEach(([k,v])=>el.setAttribute(k,v));return el}
-function renderPicker(){picker.innerHTML='';letters.forEach((l,i)=>{const b=document.createElement('button');b.className='letter-btn'+(i===currentLetter?' active':'');b.innerHTML=`<span><span class="glyph">${l.glyph}</span><br><span class="roman">${l.name}</span></span><span>${l.steps.length} strokes</span>`;b.onclick=()=>{currentLetter=i;currentStep=0;render()};picker.appendChild(b)})}
+function renderPicker(){picker.innerHTML='';letters.forEach((l,i)=>{const b=document.createElement('button');b.className='letter-btn'+(i===currentLetter?' active':'');b.innerHTML=`<span><span class="glyph">${l.glyph}</span><br><span class="roman">${l.name}</span></span><span>${l.steps.length} strokes</span>`;b.onclick=()=>{currentLetter=i;currentStep=0;stopAutoPlay();render();if(isPlaying)startAutoPlay();};picker.appendChild(b)})}
 function render(){renderPicker(); const l=letters[currentLetter]; title.textContent=`${l.glyph}  ${l.name}`; instruction.textContent=`Stroke ${currentStep+1}: ${l.steps[currentStep][0]}`; bar.style.width=`${((currentStep+1)/l.steps.length)*100}%`; svg.innerHTML='';
   [90,310,430].forEach(y=>svg.appendChild(make('line',{x1:55,y1:y,x2:445,y2:y,class:'guide-line'})));
   svg.appendChild(make('text',{x:32,y:102,class:'num'})).textContent=l.glyph;
@@ -40,11 +43,14 @@ function render(){renderPicker(); const l=letters[currentLetter]; title.textCont
   l.steps.forEach((s,i)=>{const p=make('path',{d:s[1]}); svg.appendChild(p); const len=p.getTotalLength(); const pt=p.getPointAtLength(Math.min(18,len*.2)); p.remove(); const c=make('circle',{cx:pt.x,cy:pt.y,r:14,fill:i===currentStep?'#e65b3a':'#fff',stroke:'#1689bd','stroke-width':4}); svg.appendChild(c); const t=make('text',{x:pt.x-7,y:pt.y+9,class:'num'}); t.textContent=i+1; svg.appendChild(t);});
   drawPracticeGuide();
 }
-function animatePath(p){const len=p.getTotalLength(); p.style.strokeDasharray=len; p.style.strokeDashoffset=len; p.animate([{strokeDashoffset:len},{strokeDashoffset:0}],{duration:1100,easing:'ease-in-out',fill:'forwards'});}
-document.getElementById('nextStep').onclick=()=>{const max=letters[currentLetter].steps.length-1; currentStep=currentStep===max?0:currentStep+1; render()};
-document.getElementById('prevStep').onclick=()=>{const max=letters[currentLetter].steps.length-1; currentStep=currentStep===0?max:currentStep-1; render()};
-document.getElementById('playStep').onclick=render;
+function animatePath(p){const len=p.getTotalLength(); p.style.strokeDasharray=len; p.style.strokeDashoffset=len; const duration=1100/speed; p.animate([{strokeDashoffset:len},{strokeDashoffset:0}],{duration:duration,easing:'ease-in-out',fill:'forwards'});}
+document.getElementById('pauseBtn').onclick=()=>{isPlaying=!isPlaying; const btn=document.getElementById('pauseBtn'); btn.textContent=isPlaying?'Pause':'Resume'; if(isPlaying) startAutoPlay(); else stopAutoPlay();};
+document.getElementById('speedBtn').onclick=()=>{speed=speed===1?1.5:speed===1.5?2:1; const btn=document.getElementById('speedBtn'); btn.textContent=`Speed: ${speed}x`;};
+document.getElementById('resetBtn').onclick=()=>{currentStep=0; stopAutoPlay(); render(); if(isPlaying) startAutoPlay();};
 document.getElementById('themeToggle').onclick=()=>document.documentElement.classList.toggle('dark');
+
+function startAutoPlay(){if(autoPlayInterval)return; const l=letters[currentLetter]; const stepDuration=1100/speed+200; autoPlayInterval=setInterval(()=>{const max=l.steps.length-1; if(currentStep<max){currentStep++; render();}else{stopAutoPlay();}},stepDuration);}
+function stopAutoPlay(){if(autoPlayInterval){clearInterval(autoPlayInterval); autoPlayInterval=null;}}
 
 const canvas=document.getElementById('practiceCanvas'), ctx=canvas.getContext('2d'); let drawing=false;
 function drawPracticeGuide(){ctx.clearRect(0,0,500,500); ctx.globalAlpha=.12; ctx.lineWidth=34; ctx.lineCap='round'; ctx.lineJoin='round'; ctx.strokeStyle='#1689bd'; letters[currentLetter].steps.forEach(s=>{const path=new Path2D(s[1]);ctx.stroke(path)}); ctx.globalAlpha=1; ctx.strokeStyle='#1e293b'; ctx.lineWidth=9;}
@@ -55,3 +61,4 @@ function end(){drawing=false}
 ['mousedown','touchstart'].forEach(ev=>canvas.addEventListener(ev,start,{passive:false})); ['mousemove','touchmove'].forEach(ev=>canvas.addEventListener(ev,move,{passive:false})); ['mouseup','mouseleave','touchend'].forEach(ev=>canvas.addEventListener(ev,end));
 document.getElementById('clearCanvas').onclick=drawPracticeGuide;
 render();
+startAutoPlay();
