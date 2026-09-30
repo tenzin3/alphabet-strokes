@@ -10,14 +10,14 @@
   <header>
     <div>
       <p class="eyebrow">Step-by-step handwriting</p>
-      <h1>First Eight Tibetan Alphabets</h1>
-      <p class="sub">Follow the dotted path, stroke numbers, and animated red brush to learn ཀ ཁ ག ང ཅ ཆ ཇ ཉ.</p>
+      <h1>Tibetan Alphabet Stroke Guide</h1>
+      <p class="sub">Follow the dotted path, stroke numbers, and animated red brush to learn all 30 Tibetan letters, from ཀ to ཨ.</p>
     </div>
     <button id="themeToggle" aria-label="Toggle theme">☾</button>
   </header>
 
   <main>
-    <section class="letter-picker" id="letterPicker"></section>
+    <section class="letter-picker" id="letterPicker" aria-label="Choose a Tibetan letter"></section>
 
     <section class="workspace">
       <article class="card guide-card">
@@ -54,6 +54,10 @@
       </article>
     </section>
 
+    <p class="hint references">The new guides use simplified handwriting paths based on
+      <a href="https://tibetanlanguage.school/learn/standard-tibetan/unit-1/">Christopher J. Fynn’s stroke diagrams</a>
+      (<a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>).
+      Stroke order can vary between teaching traditions.</p>
   </main>
 
   <script src="script.js"></script>
