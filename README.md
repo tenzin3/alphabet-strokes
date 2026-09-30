@@ -1,8 +1,11 @@
 # Tibetan Alphabet Stroke Guide
 
-A static handwriting guide for all 30 Tibetan consonant letters. Open `index.html`
-in a browser, select a letter, watch its numbered strokes, and trace the faint
-outline on the practice canvas. No build step or external runtime dependencies.
+**[Open the live alphabet guide](https://tenzin3.github.io/alphabet-strokes/)**
+
+A static handwriting guide for all 30 Tibetan consonant letters. Select a letter,
+watch its numbered strokes, and trace the faint outline on the practice canvas.
+To run locally, open `index.html` in a browser. No build step or external runtime
+dependencies.
 
 All letters include animated centerline paths and written directions. The ca (ཅ)
 and nya (ཉ) guides use revised four- and five-stroke sequences, respectively,
@@ -12,7 +15,7 @@ The syllable-separating tsheg shown in the reference image is not part of a lett
 
 ## GitHub Pages deployment
 
-Site: <https://tenzin3.github.io/alphabet-strokes/>
+Live site: [Tibetan Alphabet Stroke Guide](https://tenzin3.github.io/alphabet-strokes/)
 
 GitHub Pages publishes the root (`/`) of `main`. Push changes to `main` to
 automatically update the site. The empty `.nojekyll` file tells GitHub to serve
