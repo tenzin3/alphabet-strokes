@@ -88,6 +88,8 @@ const letters = [
   {
     glyph: 'ཉ',
     name: 'nya',
+    // Separate the head's number from the nearby left downstroke.
+    markerOffsets: [85],
     // Five-stroke sequence from Fynn's nya diagram; see README.md.
     steps: [
       ['Draw the head from left to right.', 'M145 90 L330 90'],
@@ -530,8 +532,11 @@ function render() {
 
     const length = tempPath.getTotalLength();
 
+    const markerDistance =
+      letter.markerOffsets?.[index] ?? Math.min(18, length * 0.2);
+
     const point = tempPath.getPointAtLength(
-      Math.min(18, length * 0.2)
+      Math.min(markerDistance, length)
     );
 
     tempPath.remove();
