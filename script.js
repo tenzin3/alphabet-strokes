@@ -45,33 +45,20 @@ const letters = [
   {
     glyph: 'ཅ',
     name: 'ca',
+    // Four-stroke sequence from Fynn's ca diagram; see README.md.
     steps: [
-      // Rebuilt using ca.svg as the reference.
-
-      // Stroke 1 — long top stroke
-      ['Draw the head from left to right.', 'M82 82 C170 84 275 88 425 96'],
-
-      // Stroke 2 — center downward stroke
-      ['Draw down from the center of the head.', 'M253 95 C251 135 250 185 251 235'],
-
-      // Stroke 3 — large lower/right curve
+      ['Draw the head from left to right.', 'M125 90 L350 90'],
       [
-        'Curve right, around the bottom, and up toward the left tip.',
-        'M254 230 ' +
-        'C292 202 337 191 375 202 ' +
-        'C419 214 445 249 447 296 ' +
-        'C449 352 425 414 384 447 ' +
-        'C350 474 291 484 239 472 ' +
-        'C184 459 146 424 119 383 ' +
-        'C91 341 76 302 58 276'
+        'From the middle of the head, curve down and curl left to the pointed tip.',
+        'M240 90 C258 140 240 190 202 198 C174 204 150 184 130 170'
       ],
-
-      // Stroke 4 — left curve connecting back toward center
       [
-        'Curve right from the left tip and back up to the center.',
-        'M58 276 ' +
-        'C105 309 159 317 205 304 ' +
-        'C228 298 245 282 251 235'
+        'From the left tip, sweep down around the bowl and curl up at the lower right.',
+        'M130 170 C158 218 171 275 220 294 C255 308 295 303 315 270'
+      ],
+      [
+        'From the central junction, arch right and curve down to close the bowl.',
+        'M232 180 C268 154 319 165 335 202 C350 232 335 255 315 270'
       ]
     ]
   },
@@ -99,33 +86,29 @@ const letters = [
   },
 
   {
-  glyph: 'ཉ',
-  name: 'nya',
-  steps: [
-
-    // Stroke 1 — upper curved arch
-    [
-      'Curve up and around the upper arch from left to right.',
-      'M72 153 ' +
-      'C48 128 47 94 63 65 ' +
-      'C84 28 126 15 175 16 ' +
-      'C226 17 272 35 307 66 ' +
-      'C333 90 342 116 337 143'
-    ],
-
-    // Stroke 2 — lower curve continuing into long tail
-    [
-      'Arch right, then sweep down and left into the long tail.',
-      'M142 250 ' +
-      'C156 216 188 187 225 174 ' +
-      'C264 161 307 168 337 193 ' +
-      'C369 220 378 260 365 300 ' +
-      'C352 340 326 373 302 407 ' +
-      'C278 441 255 472 235 505'
+    glyph: 'ཉ',
+    name: 'nya',
+    // Five-stroke sequence from Fynn's nya diagram; see README.md.
+    steps: [
+      ['Draw the head from left to right.', 'M145 90 L330 90'],
+      [
+        'From the left end of the head, curve down and left, turning slightly inward.',
+        'M165 90 C140 112 115 156 130 195'
+      ],
+      [
+        'From the right end of the head, curve down to the upper junction.',
+        'M315 90 C339 113 342 145 315 170'
+      ],
+      [
+        'From the junction, curl down and left, then turn right and up to form the inner hook.',
+        'M315 170 C273 171 230 204 233 239 C236 267 270 278 287 252'
+      ],
+      [
+        'Return to the upper junction, arch right, then sweep down and left into the long tail.',
+        'M315 170 C355 162 381 194 377 239 C372 300 305 385 265 430'
+      ]
     ]
-
-  ]
-},
+  },
   // Simplified centerline guides, following Christopher J. Fynn's stroke diagrams.
   // See README.md for the reference and attribution.
   {
